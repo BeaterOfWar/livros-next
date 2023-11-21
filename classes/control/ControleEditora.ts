@@ -15,23 +15,16 @@ const editoras: Array<Editora> = [
     },
   ];
   
-  export class ControleEditora {
-    public getEditoras = (): Editora[] => {
-      return editoras;
-    };
-  
-    public getNomeEditora = (codEditora: number): string => {
-      const editoraEncontrada = editoras.find(
-        (editora) => editora.codEditora === codEditora
-      );
-      if (editoraEncontrada) {
-        return editoraEncontrada.nome;
-      } else {
-        throw new Error('Editora não encontrada');
-      }
-    };
-  
-    public getEditora = (codEditora: number): Editora | undefined => {
-      return editoras.find((editora) => editora.codEditora === codEditora);
-    };
+export default class ControleEditora {
+  public getNomeEditora(codEditora: number): string {
+    const filtro = 
+  editoras.filter((edt) => 
+  edt.codEditora === codEditora);
+    const editora = filtro.find((edt) => true);
+    return editora ? editora.nome : 'Editora não encontrada';
   }
+  
+  public getEditoras(): Array<Editora> {
+    return editoras;
+  }
+}

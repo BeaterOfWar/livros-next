@@ -24,21 +24,21 @@ var livros: Array<Livro> = [
   },
 ];
 
-class ControleLivro {
-  obterLivros(): Array<Livro> {
-      return livros;
+export default class ControleLivro {
+  public obterLivros(): Array<Livro> {
+    return livros;
   }
 
-  incluir(livro: Livro): void {
-      let maxCodigo = Math.max(...livros.map(l => l.codigo));
-      livro.codigo = maxCodigo + 1;
-      livros.push(livro);
+  public incluir(livro: Livro): void {
+    var maxCodigo = Math.max(...livros.map((l) => l.codigo));
+    livro.codigo = maxCodigo + 1;
+    livros.push(livro);
   }
 
-  excluir(codigo: number): void {
-      let index = livros.findIndex(l => l.codigo === codigo);
-      if (index !== -1) {
-          livros.splice(index, 1);
-      }
+  public excluir(codigo: number): void {
+    var indice = livros.findIndex((l) => l.codigo === codigo);
+    if (indice >= 0) {
+      livros.splice(indice, 1);
+    }
   }
 }

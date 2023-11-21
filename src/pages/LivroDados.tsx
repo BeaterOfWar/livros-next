@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Menu } from '../../componentes/Menu';
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
-import { ControleEditora } from '../../classes/control/ControleEditora';
+import ControleEditora  from '../../classes/control/ControleEditora';
 import Livro from '../../classes/model/Livro';
 
 const controleEditora = new ControleEditora();
@@ -45,40 +45,66 @@ export const LivroDados: React.FC = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <Head>
-                <title>Loja Next</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
-            <Menu />
-
-            <main className={styles.main}>
-                <h1 className={styles.title}>
-                    Dados do Livro
-                </h1>
-                <form onSubmit={incluir}>
-                    <label>
-                        Título:
-                        <input type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
-                    </label>
-                    <label>
-                        Resumo:
-                        <textarea value={resumo} onChange={e => setResumo(e.target.value)} />
-                    </label>
-                    <label>
-                        Autores:
-                        <textarea value={autores} onChange={e => setAutores(e.target.value)} />
-                    </label>
-                    <label>
-                        Editora:
-                        <select value={codEditora} onChange={tratarCombo}>
-                            {opcoes.map((opcao, index) => <option key={index} value={opcao.value}>{opcao.text}</option>)}
-                        </select>
-                    </label>
-                    <button type="submit">Incluir</button>
-                </form>
-            </main>
-        </div>
-    );
-}
+        <main>
+          <h1>Inclusão de Livro</h1>
+          <form onSubmit={incluir}>
+            <div className="mb-3">
+              <label htmlFor="titulo" className="form-label">
+                Título
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="titulo"
+                value={titulo}
+                onChange={(event) => setTitulo(event.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="resumo" className="form-label">
+                Resumo
+              </label>
+              <textarea
+                className="form-control"
+                id="resumo"
+                value={resumo}
+                onChange={(event) => setResumo(event.target.value)}
+              ></textarea>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="autores" className="form-label">
+                Autores
+              </label>
+              <textarea
+                className="form-control"
+                id="autores"
+                value={autores}
+                onChange={(event) => setAutores(event.target.value)}
+              ></textarea>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="editora" className="form-label">
+                Editora
+              </label>
+              <select
+                className="form-select"
+                id="editora"
+                value={codEditora}
+                onChange={tratarCombo}
+              >
+                {opcoes.map((opcao) => (
+                  <option key={opcao.value} value={opcao.value}>
+                    {opcao.text}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Incluir
+            </button>
+          </form>
+        </main>
+      );
+    }
+    
+    export default LivroDados; 
